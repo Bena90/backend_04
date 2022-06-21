@@ -26,6 +26,17 @@ routerProductos.post('/',(req, res) =>{
     res.send(`<h1> Producto guardado con id: ${producto.id} <h1>`)
 })
 
+routerProductos.get('/:id',  (req,res) =>{
+    const id = parseInt(req.params.id);
+    const product = container.find(product => product.id === id);
+
+    if (product){
+        res.json(product)
+    }else{
+        res.send({'error': "producto no encontrado"})
+    }
+})
+
 routerProductos.put('/:id',  (req,res) =>{
     const id = parseInt(req.params.id);
 
